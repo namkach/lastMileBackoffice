@@ -24,7 +24,7 @@ public class AdoptionSteps extends AbstractSteps {
 	@When("staff click on {string} page")
 	public void staff_click_on_x_page(String wantedPage) {
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-		List<WebElement> pages = driver.findElements(By.className("MuiListItem-button"));
+		List<WebElement> pages = driver.findElements(By.className("lm-menu-text"));
 		String textPage = null;
 		switch (wantedPage) {
 		 case "riderList" :
@@ -34,10 +34,12 @@ public class AdoptionSteps extends AbstractSteps {
 			 textPage = uploadPage;
 			 break;
 		 }
-		
+		System.out.println("textPage : " + textPage);
 		 for(WebElement page : pages) {
 			 System.out.println("pages : " + page.getText());
+			 driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 			 if (page.getText().equals(textPage)) {
+				 System.out.println("Click");
 				 page.click();
 				 WebElement headerName = driver.findElement(By.className("App-Content"));
 				 assert headerName.getText().equals(textPage);
